@@ -1,0 +1,6 @@
+jupyter
+sklearn
+pandas
+seaborn
+scikit-optimize
+vizdoom
