@@ -1,5 +1,4 @@
-# 02757-advanced-machine-learning
-# VizDoom
+# VizDoom w. Jupyter setup in Docker 
 
 ## Up and running
 To get going as fast as possible (without visuals) you can do this. If you're training on servers - this approach might be the only resonable thing to do.
