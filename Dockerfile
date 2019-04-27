@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:19.01-py3
+FROM nvcr.io/nvidia/tensorflow:19.04-py3
 
 # currently this docker-image only runs non-visually, which is still useful for training but not for debugging
 # we could look more into the possiblities here https://github.com/mwydmuch/ViZDoom/tree/master/docker
