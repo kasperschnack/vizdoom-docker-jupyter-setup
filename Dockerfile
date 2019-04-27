@@ -1,9 +1,5 @@
 FROM nvcr.io/nvidia/tensorflow:19.04-py3
 
-# currently this docker-image only runs non-visually, which is still useful for training but not for debugging
-# we could look more into the possiblities here https://github.com/mwydmuch/ViZDoom/tree/master/docker
-# so far though, I haven't gotten it to work.
-
 VOLUME /project
 
 WORKDIR /project
@@ -18,6 +14,6 @@ RUN apt-get install -y libboost-all-dev
 
 COPY requirements.txt ./
 
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python get-pip.py --force-reinstall && pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8888
