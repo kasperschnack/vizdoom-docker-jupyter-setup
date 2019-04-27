@@ -14,15 +14,7 @@ RUN apt-get install -y libboost-all-dev
 
 COPY requirements.txt ./
 
-RUN apt-get install -y software-properties-common \
-    && add-apt-repository main \
-    && add-apt-repository universe \
-    && add-apt-repository restricted \
-    && add-apt-repository multiverse \
-    && apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y python3-notebook jupyter-core python-ipykernel \
-    && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python3 get-pip.py --force-reinstall \
     && pip3 install -r requirements.txt
 
