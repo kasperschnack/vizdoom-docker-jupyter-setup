@@ -14,9 +14,9 @@ RUN apt-get install -y libboost-all-dev
 
 COPY requirements.txt ./
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
+RUN apt purge python2.7-minimal \
+    && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python3 get-pip.py --force-reinstall \
-    && pip3 install --no-cache-dir -r requirements.txt \
-    && sudo apt purge python2.7-minimal
+    && pip3 install --no-cache-dir -r requirements.txt
 
 EXPOSE 8888
