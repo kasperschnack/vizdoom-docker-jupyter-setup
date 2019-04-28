@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tensorflow:19.04-py3
+FROM nvcr.io/nvidia/tensorflow:19.04-py2
 
 VOLUME /project
 
