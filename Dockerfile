@@ -16,7 +16,6 @@ COPY requirements.txt ./
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python3 get-pip.py --force-reinstall \
-    && pip3 install -r requirements.txt \
-    && pip install jupyter
+    && pip install -r requirements.txt
 
 EXPOSE 8888
