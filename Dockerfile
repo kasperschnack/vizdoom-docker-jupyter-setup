@@ -16,7 +16,7 @@ COPY requirements.txt ./
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     && python get-pip.py --force-reinstall \
-    && pip install -r --no-cache-dir requirements.txt \
+    && pip install --no-cache-dir -r requirements.txt \
     && pip install --upgrade notebook \
     && pip install lesscpy
 
