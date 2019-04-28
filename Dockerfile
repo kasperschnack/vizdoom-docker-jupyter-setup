@@ -14,8 +14,8 @@ RUN apt-get install -y libboost-all-dev
 
 COPY requirements.txt ./
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
-    && python3 get-pip.py --force-reinstall \
-    && pip install -r requirements.txt
+RUN pip install -r --no-cache requirements.txt \
+    && pip install --upgrade notebook \
+    && pip install lesscpy
 
 EXPOSE 8888
