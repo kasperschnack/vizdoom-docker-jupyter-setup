@@ -53,3 +53,8 @@ docker build --no-cache -t doom .
 
 docker run -d -v $(pwd):/project -e DISPLAY=docker.for.mac.host.internal:0 -p 8888:8888 doom jupyter notebook --no-browser --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
 ~~~~
+
+## Up and running with GPU
+
+Doing Deep RL using CPUs is very time consuming  using GPUs is generally preferable. We train using quite a few different algorithms. 
+As there are currently no Macbooks with nvidia gpu(the only feasible gpus for deep learning at the time of writing) we we only use mac for the preliminary testing. The actual training is done on ubuntu-machines. Setting up unfortunately isn't trivial. Thankfully, Pyimagesearch has a [guide](https://www.pyimagesearch.com/2019/01/30/ubuntu-18-04-install-tensorflow-and-keras-for-deep-learning/) for doing setup.
