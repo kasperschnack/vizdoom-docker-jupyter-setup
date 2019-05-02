@@ -12,16 +12,17 @@ libopenal-dev timidity libwildmidi-dev unzip
 # Boost libraries
 RUN apt-get install -y libboost-all-dev
 #SDL
-RUN apt-get install libsdl2-2.0-0 \ 
-    apt-get install libsdl2-dev   \
-    apt-get install libsdl2-image-2.0-0 \
-    apt-get install libsdl2-image-dev \
-    apt-get install libsdl2-mixer-2.0-0 \
-    apt-get install libsdl2-mixer-dev\
-    apt-get install libsdl2-net-2.0-0 \
-    apt-get install libsdl2-net-dev \
-    apt-get install libsdl2-ttf-2.0-0 \
-    apt-get install libsdl2-ttf-dev
+RUN apt-get update && apt-get install -y \
+libsdl2-2.0-0 \
+libsdl2-dev \
+libsdl2-image-2.0-0\
+libsdl2-image-dev\
+libsdl2-mixer-2.0-0\ 
+libsdl2-mixer-dev\ 
+libsdl2-net-2.0-0 \
+libsdl2-net-dev\ 
+libsdl2-ttf-2.0-0\
+libsdl2-ttf-dev
 
 
 
