@@ -1,7 +1,6 @@
-jupyter
+jupyterlab
+black
+nb_black
 sklearn
-pandas
-seaborn
-scikit-optimize
 vizdoom
 scikit-image
