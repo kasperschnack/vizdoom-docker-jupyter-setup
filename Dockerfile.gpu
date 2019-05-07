@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:latest-py3
+FROM nvcr.io/nvidia/tensorflow:19.04-py3
 
 VOLUME /project
 
