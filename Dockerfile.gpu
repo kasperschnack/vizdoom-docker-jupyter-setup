@@ -55,7 +55,7 @@ libopenal-dev timidity libwildmidi-dev unzip
 RUN apt-get install -y libboost-all-dev
 
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
-    && python get-pip.py --force-reinstall
+    && python get-pip.py --force-reinstall \
     && pip install --upgrade pip \
     && pip install vizdoom
 
