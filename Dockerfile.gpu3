@@ -11,7 +11,15 @@ RUN cat /etc/*release && python --version
 RUN apt-get update && apt-get install --no-install-recommends -y libhdf5-dev \
 build-essential zlib1g-dev libsdl2-dev libjpeg-dev \
 nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
-libopenal-dev python3.6* timidity libwildmidi-dev python3-pip unzip curl && python --version
+libopenal-dev timidity libwildmidi-dev unzip curl && python --version
+
+# Reinstall python3
+RUN apt-get purge python3.6 \
+    && apt-get autoremove \
+    && sudo apt-get autoclean \
+    && apt-get install -y python3.6* python3-pip \
+    && python --version
+
 
 # Boost libraries
 RUN apt-get install -y libboost-all-dev && python --version
