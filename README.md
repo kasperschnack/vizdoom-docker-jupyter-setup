@@ -12,7 +12,7 @@ docker run -d -v $(pwd):/project -p 8888:8888 doom jupyter notebook --ip 0.0.0.0
 
 with GPU (assumes you're setup for gpu - if not see the section 'Up and running with GPU' below)
 ~~~~
-docker build --no-cache -t doom-gpu ./Dockerfile.gpu
+docker build -f ./Dockerfile.gpu --no-cache -t doom-gpu .
 
 docker run -runtime=nvidia -d -v $(pwd):/project -p 8888:8888 doom jupyter notebook --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
 ~~~~
