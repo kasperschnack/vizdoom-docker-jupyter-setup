@@ -14,7 +14,9 @@ nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
 libopenal-dev timidity libwildmidi-dev unzip curl && python --version
 
 # Reinstall python3
-RUN apt-get purge python3.6 \
+RUN add-apt-repository ppa:fkrull/deadsnakesapt-get \
+    && apt-get update \
+    && purge python3.6 \
     && apt-get autoremove \
     && sudo apt-get autoclean \
     && apt-get install -y python3.6* python3-pip \
