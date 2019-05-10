@@ -11,7 +11,7 @@ RUN cat /etc/*release \
     && python --version \
     && apt-get update && apt-get install -y curl \
     && python -m pip install -U pip==19.0.2 \
-    && pip install --upgrade pip
+    && pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt 
     #&& curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
     #&& python get-pip.py --force-reinstall
