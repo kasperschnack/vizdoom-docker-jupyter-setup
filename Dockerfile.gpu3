@@ -15,11 +15,11 @@ libopenal-dev timidity libwildmidi-dev unzip curl && python --version
 
 # Reinstall python3
 RUN apt-get install -y software-properties-common \
-    && add-apt-repository ppa:fkrull/deadsnakesapt-get \
+    && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update \
-    && purge python3.6 \
+    && apt-get purge python3.6 \
     && apt-get autoremove \
-    && sudo apt-get autoclean \
+    && apt-get autoclean \
     && apt-get install -y python3.6* python3-pip \
     && python --version
 
