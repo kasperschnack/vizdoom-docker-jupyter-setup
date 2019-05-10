@@ -54,6 +54,8 @@ libopenal-dev timidity libwildmidi-dev unzip
 # Boost libraries
 RUN apt-get install -y libboost-all-dev
 
+RUN pip install vizdoom
+
 # code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
 RUN apt-get install -y curl python-software-properties \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
