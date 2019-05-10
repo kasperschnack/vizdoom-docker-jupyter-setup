@@ -3,3 +3,4 @@ jupyterlab
 yapf
 sklearn
 scikit-image
+vizdoom

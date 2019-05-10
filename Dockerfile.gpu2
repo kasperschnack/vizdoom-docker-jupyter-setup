@@ -1,0 +1,29 @@
+FROM nvcr.io/nvidia/tensorflow:19.04-py3
+
+VOLUME /project
+
+WORKDIR /project
+
+# Basic setup.
+RUN cat /etc/*release \
+    && python --version \
+    && apt-get update \
+    && apt-get install -y \
+    build-essential bzip2 cmake curl git libboost-all-dev libbz2-dev \
+    libfluidsynth-dev libfreetype6-dev libgme-dev libgtk2.0-dev \
+    libjpeg-dev libopenal-dev libpng12-dev libsdl2-dev libwildmidi-dev \
+    libzmq3-dev nasm pkg-config rsync software-properties-common \
+    tar timidity unzip wget zlib1g-dev
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt 
+
+# code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
+RUN apt-get install -y curl python-software-properties \
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && apt-get install -y nodejs \
+    && jupyter labextension install @ryantam626/jupyterlab_code_formatter \
+    && pip install jupyterlab_code_formatter \
+    && jupyter serverextension enable --py jupyterlab_code_formatter
+
+EXPOSE 8888
