@@ -3,15 +3,23 @@
 ## Up and running
 To get going as fast as possible (without visuals) you can do this. If you're training on servers - this approach might be the only resonable thing to do.
 
+with CPU:
 ~~~~
 docker build --no-cache -t doom .
 
-docker run -d -v $(pwd):/project -p 8888:8888 doom jupyter notebook --no-browser --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
+docker run -d -v $(pwd):/project -p 8888:8888 doom jupyter notebook --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
+~~~~
+
+with GPU (assumes you're setup for gpu - if not see the section 'Up and running with GPU' below)
+~~~~
+docker build --no-cache -t doom-gpu ./Dockerfile.gpu
+
+docker run -runtime=nvidia -d -v $(pwd):/project -p 8888:8888 doom jupyter notebook --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
 ~~~~
 
 ## Up and running w. visuals
 
-It is actually possible to see the frame by frame through docker even though it takes a bit of fiddling:
+It is actually possible to see the frame by frame through docker even though it takes a bit of setup:
 
 This works with the following versions on a host machine running Mac OS 10.14.3
 - XQuartz 2.7.11 (xorg-server 1.18.4)
@@ -51,7 +59,7 @@ socat   29298 mdesales    5u  IPv4 0xe21e43ca9d99bf1d      0t0  TCP *:6000 (LIST
 ~~~~
 docker build --no-cache -t doom .
 
-docker run -d -v $(pwd):/project -e DISPLAY=docker.for.mac.host.internal:0 -p 8888:8888 doom jupyter notebook --no-browser --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
+docker run -d -v $(pwd):/project -e DISPLAY=docker.for.mac.host.internal:0 -p 8888:8888 <image-name> jupyter notebook --no-browser --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:8888
 ~~~~
 
 ## Up and running with GPU

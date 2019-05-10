@@ -1,6 +1,6 @@
+numpy
 jupyterlab
-black
-nb_black
+yapf
 sklearn
 vizdoom
 scikit-image
