@@ -14,24 +14,27 @@ nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
 libopenal-dev timidity libwildmidi-dev unzip curl && python --version
 
 # Default python to python3
-RUN which python \
+RUN echo "HEST" \
+    && which python \
     && which python3 \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
     && python --version
 
 # Boost libraries
-RUN apt-get install -y libboost-all-dev && python --version
+RUN apt-get install -y libboost-all-dev \
+    && echo "HEST" \
+    && python --version
 
 COPY requirements.txt ./
 RUN python -m pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt 
 
-# code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
-RUN apt-get install -y curl python-software-properties \
-    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y nodejs \
-    && jupyter labextension install @ryantam626/jupyterlab_code_formatter \
-    && pip install jupyterlab_code_formatter \
-    && jupyter serverextension enable --py jupyterlab_code_formatter
+## code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
+#RUN apt-get install -y curl python-software-properties \
+#    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+#    && apt-get install -y nodejs \
+#    && jupyter labextension install @ryantam626/jupyterlab_code_formatter \
+#    && pip install jupyterlab_code_formatter \
+#    && jupyter serverextension enable --py jupyterlab_code_formatter
 
 EXPOSE 8888
