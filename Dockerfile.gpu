@@ -51,14 +51,14 @@ RUN apt-get install -y libboost-all-dev
 
 # Install pip packages
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt 
+RUN pip3 install --no-cache-dir -r requirements.txt 
 
 # code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
 RUN apt-get install -y curl python-software-properties \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs \
     && jupyter labextension install @ryantam626/jupyterlab_code_formatter \
-    && pip install jupyterlab_code_formatter \
+    && pip3 install jupyterlab_code_formatter \
     && jupyter serverextension enable --py jupyterlab_code_formatter
 
 EXPOSE 8888
