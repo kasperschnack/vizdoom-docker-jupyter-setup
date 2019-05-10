@@ -4,7 +4,7 @@ VOLUME /project
 
 WORKDIR /project
 
-# Basic setup.
+# Basic info
 RUN cat /etc/*release && python --version
 
 # ZDoom dependencies
@@ -13,7 +13,7 @@ build-essential zlib1g-dev libsdl2-dev libjpeg-dev \
 nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
 libopenal-dev timidity libwildmidi-dev unzip curl && python --version
 
-# Reset to python3
+# Default python to python3
 RUN which python \
     && which python3 \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
@@ -23,7 +23,8 @@ RUN which python \
 RUN apt-get install -y libboost-all-dev && python --version
 
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt 
+RUN python -m pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt 
 
 # code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
 RUN apt-get install -y curl python-software-properties \
