@@ -14,7 +14,7 @@ with GPU (assumes you're setup for gpu - if not see the section 'Up and running 
 ~~~~
 docker build -f ./Dockerfile.gpu --no-cache -t doom-gpu .
 
-docker run -runtime=nvidia -d -v $(pwd):/project -p 8888:8888 doom jupyter lab --ip 0.0.0.0 --allow-root --NotebookApp.token='' && xdg-open http:localhost:8888
+docker run -runtime=nvidia -d -v $(pwd):/project -p 8888:8888 doom-gpu jupyter lab --ip 0.0.0.0 --allow-root --NotebookApp.token='' && xdg-open http:localhost:8888
 ~~~~
 
 ## Up and running w. visuals
