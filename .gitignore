@@ -1,5 +1,6 @@
 inspire/
 models/
+model/
 logs/
 .ipynb_checkpoints
 _vizdoom*
