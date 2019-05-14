@@ -7,14 +7,14 @@ with CPU:
 ~~~~
 docker build --no-cache -t doom .
 
-docker run -d -v $(pwd):/project -p 8888:8888 -p 6006:6006 doom jupyter lab --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:6006 && open http:localhost:8888
+docker run -d -v $(pwd):/project -p 8888:8888 -p 6006:6006 doom /bin/bash -c "tensorboard --logdir=worker_0:'./train_0',worker_1:'./train_1',worker_2:'./train_2',worker_3:'./train_3' & jupyter lab --ip 0.0.0.0 --allow-root --no-browser --NotebookApp.token=''" && open http:localhost:6006 && open http:localhost:8888
 ~~~~
 
 with GPU (assumes you're setup for gpu - if not see the section 'Up and running with GPU' below)
 ~~~~
 docker build -f ./Dockerfile.gpu --no-cache -t doom-gpu .
 
-docker run --runtime=nvidia -d -v $(pwd):/project -p 8888:8888 -p 6006:6006 doom-gpu jupyter lab --ip 0.0.0.0 --allow-root --NotebookApp.token='' && xdg-open http:localhost:6006 && xdg-open http:localhost:8888
+docker run --runtime=nvidia -d -v $(pwd):/project -p 8888:8888 -p 6006:6006 doom-gpu /bin/bash -c "tensorboard --logdir=worker_0:'./train_0',worker_1:'./train_1',worker_2:'./train_2',worker_3:'./train_3' & jupyter lab --ip 0.0.0.0 --allow-root --no-browser --NotebookApp.token=''" && xdg-open http:localhost:6006 && xdg-open http:localhost:8888
 ~~~~
 
 ## Up and running w. visuals
@@ -59,7 +59,7 @@ socat   29298 mdesales    5u  IPv4 0xe21e43ca9d99bf1d      0t0  TCP *:6000 (LIST
 ~~~~
 docker build --no-cache -t doom .
 
-docker run -d -v $(pwd):/project -e DISPLAY=docker.for.mac.host.internal:0 -p 8888:8888 -p 6006:6006 <image-name> jupyter lab --ip 0.0.0.0 --allow-root --NotebookApp.token='' && open http:localhost:6006 && open http:localhost:8888
+docker run -d -v $(pwd):/project -e DISPLAY=docker.for.mac.host.internal:0 -p 8888:8888 -p 6006:6006 <image-name> /bin/bash -c "tensorboard --logdir=worker_0:'./train_0',worker_1:'./train_1',worker_2:'./train_2',worker_3:'./train_3' & jupyter lab --ip 0.0.0.0 --allow-root --no-browser --NotebookApp.token=''" && open http:localhost:6006 && open http:localhost:8888
 ~~~~
 
 ## Up and running with GPU
