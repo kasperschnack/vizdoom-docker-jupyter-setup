@@ -4,3 +4,4 @@ yapf
 sklearn
 scikit-image
 vizdoom
+moviepy
