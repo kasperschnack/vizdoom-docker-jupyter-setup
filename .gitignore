@@ -3,3 +3,5 @@ models/
 logs/
 .ipynb_checkpoints
 _vizdoom*
+*.gif
+events.out.*
