@@ -1,6 +1,6 @@
 FROM tensorflow/tensorflow:1.13.1-py3
 
-OLUME /project
+VOLUME /project
 
 WORKDIR /project
 
