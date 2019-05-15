@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.13.1-py3
+FROM tensorflow/tensorflow:1.13.1
 
 VOLUME /project
 
@@ -8,27 +8,34 @@ WORKDIR /project
 RUN cat /etc/*release && python --version
 
 # ZDoom dependencies
-RUN apt-get update && apt-get install --no-install-recommends -y libhdf5-dev \
-build-essential zlib1g-dev libsdl2-dev libjpeg-dev \
-nasm tar libbz2-dev bzip2 g++ libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
-libgtk-3-dev libmpg123-dev libopenal-dev libsndfile1-dev timidity \
-libwildmidi-dev x11-apps unzip curl \
-&& python --version
+# RUN apt-get update && apt-get install -y libhdf5-dev \
+# build-essential zlib1g-dev libsdl2-dev libjpeg-dev \
+# nasm tar libbz2-dev bzip2 g++ libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
+# libgtk-3-dev libmpg123-dev libopenal-dev libsndfile1-dev timidity \
+# libwildmidi-dev x11-apps unzip curl \
+# && python --version
 
-# Default python to python3
-RUN which python \
-    && which python3 \
-    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
-    && apt-get install -y python3-dev python3-pip \
-    && python --version
+# ZDoom dependencies
+RUN apt-get update && apt-get install -y build-essential zlib1g-dev libsdl2-dev libjpeg-dev \
+    nasm tar libbz2-dev libgtk2.0-dev cmake git libfluidsynth-dev libgme-dev \
+    libopenal-dev timidity libwildmidi-dev unzip curl && python --version
 
 # Boost libraries
 RUN apt-get install -y libboost-all-dev \
     && python --version
 
+RUN apt-get install -y python-dev python-pip \
+    && python -m pip install --upgrade pip
+
+# Default python to python3
+#RUN which python \
+#    && which python3 \
+#    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
+#    && apt-get install -y python3-dev python3-pip \
+#    && python --version
+
 COPY requirements.txt ./
-RUN python -m pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt 
+RUN pip install --no-cache-dir -r requirements.txt 
 
 ## code formatter (https://github.com/ryantam626/jupyterlab_code_formatter)
 #RUN apt-get install -y curl python-software-properties \
