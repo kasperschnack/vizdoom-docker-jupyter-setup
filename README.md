@@ -1,4 +1,4 @@
-# VizDoom w. Jupyter setup in Docker 
+# VizDoom with Jupyter setup in Docker 
 
 ## Up and running
 To get going as fast as possible (without visuals) you can do this. If you're training on servers - this approach might be the only resonable thing to do.
@@ -17,7 +17,7 @@ docker build -f ./Dockerfile.gpu --no-cache -t doom-gpu .
 docker run --runtime=nvidia -d -v $(pwd):/project -p 8888:8888 -p 6006:6006 doom-gpu jupyter lab --ip 0.0.0.0 --allow-root --no-browser --NotebookApp.token='' && xdg-open http:localhost:6006 && xdg-open http:localhost:8888
 ~~~~
 
-## Up and running w. visuals
+## Up and running with visuals
 
 It is actually possible to see the frame by frame through docker even though it takes a bit of setup:
 
